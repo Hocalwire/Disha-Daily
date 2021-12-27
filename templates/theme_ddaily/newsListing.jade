@@ -1,0 +1,21 @@
+include allMixins
+extends layout
+block content 
+  section.wrapper
+    //- //top header
+    include partials/_header.jade
+    section
+      //
+        <div class="h-ad">
+        </div>
+    section.grid-card
+      .row
+        .col-md-12
+          .left-top-heading
+            h3 Top heading
+        .col-lg-6.col-sm-12.col-xs-12
+          include partials/_listingLeftSection
+        .col-lg-1.col-sm-12.col-xs-12
+        .col-lg-5.col-sm-12.col-xs-12
+          .right-card-section.right-section
+            include partials/_genericRightSection

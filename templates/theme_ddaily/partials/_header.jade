@@ -1,0 +1,24 @@
+-var headerCats = env.partnerCatData.topHeaderCats
+
+.top-header
+    .d-flex.justify-space-between
+      .top-header-left.d-flex
+        +includeElement(data,"header_top_left")
+      .top-header-right
+        +includeElement(data,"header_top_right")
+  .h-header
+    .middle-header
+      .d-flex.justify-space-between
+        .middle-left
+          figure
+            a(href='/')
+              img.top-logo-img(src='/images/logo.png' alt='Logo')
+        .middle-right
+          +includeElement(data,"header_middle_right")
+    header
+      .header
+        ul
+          -for(var i=0;i<headerCats.length;i++){
+            li
+              a(href='#{headerCats[i].url}') #{headerCats[i].name}
+          -}

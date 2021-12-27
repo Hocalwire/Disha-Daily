@@ -1,0 +1,42 @@
+mixin newsLink(data)
+  .row
+    .col-md-12
+      -if(data.templateData.heading){
+        .card_title.mb-1_5.border-bottom
+          h2.card_title_span 
+            a(href='#{data.templateData.link}') #{data.templateData.heading}
+      -}
+      .card_list
+        ul
+          -for(var i =0;i<data.data.length;i++){
+            li
+              div
+                i.fa.fa-circle
+                a(href='#{data.data[i].newsUrl}') !{data.data[i].title}  
+              //- | ప్రతిరోజు రైతులకు 300 టోకెన్లు ఇస్తాం.. కానీ షరతులు వర్తిస్తాయి కానీ షరతులు వర్తిస్తాయి
+          -}  
+          //- li
+          //-   div
+          //-     i.fa.fa-circle
+          //-   | తెలంగాణ రైతాంగానికి షాక్.. ఇకనుంచి ఆ పంటలు వద్దన్న మంత్రి.. పంటలు వద్దన్న మంత్రి..
+          //- li
+          //-   div
+          //-     i.fa.fa-circle
+          //-   | మేము వడ్లు కొనం.. తెగేసి చెప్పిన వ్యవసాయ శాఖ మంత్రి పంటలు వద్దన్న మంత్రి..
+          //- // <li><div><i class="fa fa-circle"></i></div>రైతులకు గుడ్ న్యూస్.. అడవి జంతువులను పరిగెత్తించే యంత్రాలు పంటలు వద్దన్న మంత్రి..</li>
+          //- li
+          //-   div
+          //-     i.fa.fa-circle
+          //-   | భారీగా పంట నష్టం.. రూ.10 వేల కోట్ల పరిహారం విడుదల
+          //- li
+          //-   div
+          //-     i.fa.fa-circle
+          //-   | భారీగా పంట నష్టం.. రూ.10 వేల కోట్ల పరిహారం విడుదల పంటలు వద్దన్న మంత్రి..
+          //- li
+          //-   div
+          //-     i.fa.fa-circle
+          //-   | భారీగా పంట నష్టం.. రూ.10 వేల కోట్ల పరిహారం విడుదల
+          //- li
+          //-   div
+          //-     i.fa.fa-circle
+          //-   | భారీగా పంట నష్టం.. రూ.10 వేల కోట్ల పరిహారం విడుదల పంటలు వద్దన్న మంత్రి..

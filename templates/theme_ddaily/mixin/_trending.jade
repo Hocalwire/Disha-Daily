@@ -1,0 +1,21 @@
+mixin trending(data)
+    .top-heading-first
+      .row
+        -if(data.templateData.heading) {
+          .col-md-12
+            .top-heading-first
+              h4.top-heading-h3 
+                a(href='#{data.templateData.link}') #{data.templateData.heading}
+        -}
+        -for(var i = 0 ; i< data.data.length ; i++) {
+          .col-md-4.col-sm-4.xol-xs-12
+            .d-flex
+              .article-card-img
+                a(href='#{data.data[i].newsUrl}')
+                  !{Utils.getMediaElement(data.data[i],0,250,150,true)}
+              .article-card-body
+                h4.card-text-h3 
+                  a(href='#{data.data[i].newsUrl}') !{Utils.trimSentence(data.data[i].heading,50,"...").finalString}
+        -}
+
+        //- !{Utils.trimSentence(data.data[0].heading,100,"...").finalString}

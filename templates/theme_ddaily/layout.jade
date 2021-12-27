@@ -1,0 +1,41 @@
+doctype 
+html(lang="#{env.lang||'en'}")
+    head
+        include ../common/headSectionTop
+
+        - if(environment === 'development') {
+            link(rel='stylesheet' href='/theme_ddaily/styles/boostrap-light.css' type='text/css')
+            link(rel='stylesheet' href='/theme_ddaily/styles/style.css' type='text/css')
+            link(rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css')
+            link(rel='stylesheet' href="/theme_ddaily/styles/css/lightslider.css")
+    
+        - } else {
+            style(type='text/css',class="styles")
+                include ../../public/styles/themedmc2021inline.min.04b3066c.css
+        - }
+        include ../common/headSectionBottom
+    body.wrapper.de_light(id='homepage')
+        include ../common/bodySectionTop
+        
+        block commonScripts
+        - if(environment === 'development') {
+            -if(env.partnerData.use_common_light){
+                include ../common/commonscriptslight
+            -} else {
+                include ../common/commonscripts
+            -}
+            script(src="#{Utils.getCDNUrl('theme_ddaily/scripts/lightslider.js')}")
+        - } else {
+            include ../common/_loadThemeResources
+            include ../common/_includeCommonJS
+            -var jscomm = env.commonjsfilepath
+            -var partnerss = env.partnerData.extraStylePath
+            -var css = "/styles/themedmc2021inlinefile.min.d41d8cd9.css"
+            -var jstheme = "/scripts/themedmc2021inlinejs.min.bb1f861e.js"
+            +loadThemeResources(css,jscomm,jstheme,partnerss,(env.commonjsfilepathPart2 || false))
+        - }
+        include ../common/bodySectionBottom
+        -if(env.partnerData.async_optimized_script_path){
+            +loadAysnResources([],[env.partnerData.async_optimized_script_path],[],[env.partnerData.async_optimized_script_path])
+        -}
+

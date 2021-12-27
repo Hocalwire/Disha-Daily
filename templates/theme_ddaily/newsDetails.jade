@@ -1,0 +1,16 @@
+include allMixins
+extends layout 
+block content 
+
+  section.wrapper
+    include partials/_header
+    section
+      .h-ad
+        +includeElement(data,"full_level_1")
+    section.grid-card.article
+      .row
+        include partials/_detailLeftSection
+        .col-lg-4.col-12-4.col-xs-12.article-page-right
+          include partials/_genericRightSection
+    include partials/_footer
+        

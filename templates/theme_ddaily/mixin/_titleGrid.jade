@@ -1,0 +1,26 @@
+mixin titleGrid(data)
+  -if(data.templateData.heading){
+    .col-md-12
+      .card_title.mb-1_5.mt-2.border-bottom
+        h3.card_title_span 
+          a(href='#{data.templateData.link}') #{data.templateData.heading}
+  -}
+  -for(var i=0;i<data.data.length;i++){    
+    .col-md-6
+      .card
+        .article-card-img
+          a(href='#{data.data[i].newsUrl}')
+            !{Utils.getMediaElement(data.data[i],0,250,150,true)}
+        .article-card-body
+          h5.card-text-h3
+            b 
+              a(href='#{data.data[i].newsUrl}') !{data.data[i].title}
+  -}        
+  //- .col-md-6
+  //-   .card
+  //-     .article-card-img
+  //-       img.article-card-img-top(src='/theme_ddaily/images/article-image.png' alt='Images')
+  //-     .article-card-body
+  //-       h5.card-text-h3
+  //-         b వర్షాలు ఉంటే టార్పాలిన్లు ఇవ్వండి : మంత్రి గంగుల ఆదేశం
+//- వ్యవసాయం

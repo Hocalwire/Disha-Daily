@@ -1,0 +1,31 @@
+mixin newsListing(data)
+  .row
+    .col-md-12
+      .card_title.mb-1_5.d-flex
+        -if(data.templateData.heading){
+          h2.card_title_span.bg-grey 
+            a(href='#{data.templateData.link}') #{data.templateData.heading}
+        -}
+        select#district_name(name='district_name')
+          option Select District
+          option(value='baraut') baraut
+          option(value='Delhi') Delhi
+          option(value='Noida') Noida
+          option(value='Bagpat') Bagpat
+      .card_list.card-list-right
+        ul
+          -for(var i = 0;i<data.data.length;i++){
+            li
+              .d-flex
+                .article-card-img
+                  a(href='#{data.data[i].newsUrl}')
+                    !{Utils.getMediaElement(data.data[i],0,250,150,true)}
+                .article-card-body
+                  h4.card-text-h3 
+                    a(href='#{data.data[i].newsUrl}') !{data.data[i].title}
+          -}
+          
+          .h-more
+            h4
+              | More 
+              i.fa.fa-angle-double-right

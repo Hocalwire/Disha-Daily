@@ -1,0 +1,18 @@
+mixin textOnImage(data)
+  .col-md-12
+    -if(data.templateData.heading){
+      .card_title.mb-1_5.border-bottom
+        h2.card_title_span 
+          a(href='#{data.templateData.link}') #{data.templateData.heading}
+    -}
+    -if(data.data.length > 0){
+      .card.text-on-image
+        .article-card-img
+          a(href='#{data.data[0].newsUrl}')
+            !{Utils.getMediaElement(data.data[0],0,500,300,true)}
+        .article-card-body
+          h4.card-text-h3
+            b 
+              a(href='#{data.data[0].newsUrl}') !{data.data[0].title}
+    -}
+

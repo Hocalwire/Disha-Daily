@@ -1,0 +1,22 @@
+mixin relatedPost(data)
+  .right-top-heading
+    -if(data.templateData.heading){
+        h4.card_title_span.bg-grey 
+          a(href='#{data.templateData.link}') #{data.templateData.heading}
+    -}
+    .row
+      -for(var i =0;i<data.data.length;i++){
+        .col-lg-4.col-sm-4.col-xs-12
+          // card start
+          .card
+            .article-card-img
+              a(href='#{data.data[i].newsUrl}')
+                !{Utils.getMediaElement(data.data[i],0,250,150,true)}
+            .article-card-body
+              h4.card-text-h3
+                b
+                  a(href='#{data.data[i].newsUrl}') !{data.data[i].title}
+          // card end
+
+      -}
+          

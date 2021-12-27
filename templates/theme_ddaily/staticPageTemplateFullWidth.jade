@@ -1,0 +1,15 @@
+include allMixins
+extends layout 
+block content 
+
+  section.wrapper
+    include partials/_header
+    section
+      .h-ad
+        +includeElement(data,"full_level_1")
+    section.grid-card.article
+      .row
+        h1.title.is-1.is-custom-title !{data.page_name}
+          .static_page_content !{data.content}
+    include partials/_footer
+        

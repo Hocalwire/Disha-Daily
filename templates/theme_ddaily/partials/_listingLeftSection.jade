@@ -1,0 +1,13 @@
+
+.left-section
+  // card start
+  -for(var i = 0;i<data.mainCatNews.data.all.length;i++){
+    .card.d-flex
+      .card-img
+        a(href="#{data.mainCatNews.data.all[i].newsUrl}") 
+          !{Utils.getMediaElement(data.mainCatNews.data.all[i],0,250,150,true)}
+      .card-body
+        p.card-text  
+          a(href="#{data.mainCatNews.data.all[i].newsUrl}") !{data.mainCatNews.data.all[i].title}
+  -}
+  

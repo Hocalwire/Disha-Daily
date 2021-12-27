@@ -1,0 +1,103 @@
+.col-lg-8.col-sm-12.col-xs-12
+  -if(env.partnerData.is_infinite_scroll_gallery && data.mediaIds.length>1){
+    -var slide = data['mediaIds'][data.galleryPageNo-1]
+    -var totalCount = data['mediaIds'].length
+  -}
+  // card start
+  .article-card
+    -if(data.is_paid_news && data.is_paid_news == 'true') {
+      span.paid_news_icon.details_page 
+    -}
+    .article-heading
+      -if(data.xhrPageLoad){
+          h2
+            a(href="#{data.newsUrl}") !{data.title}
+      -} else{
+          h1
+            | #{data.title}
+      -}
+      +includeElement(data,"inline-heading-ad","inline-heading-ad")
+      time.hocal-date
+        span.convert-to-localtime(data-datestring = "#{data.date_string}") #{data.date} 
+    
+    .article-card-img
+      -if(data.mediaIds.length && (!data.pageNo || data.pageNo < 2)){
+        -if(!(data['oldPost'] && env.partnerData.oldPostDuplicateImage)){
+            -if(data.mediaIds.length>1){
+              +photoGalleryFromMediaIds(data,{"width":300,"ignoreHeading":env.partnerData.ignore_heading_on_image_in_post_gallery})
+            -} else {
+                !{Utils.getMediaElement(data,0)}
+            -}
+            -if(data.mediaIds.length<2 && data.mediaIds.length>0){
+                .in-image-ad-wrap.full-width-img.hide
+                    .close-btn-in-img 
+                        i.material-icons X
+                    +includeElement(data,"IN_IMAGE_AD","ad-content")
+            -}
+            -if(data.mediaIds.length==1){
+                -if(data.mainImageCaption) {
+                  span.image_caption
+                      !{data.mainImageCaption}
+                -}
+            -}
+        -}  
+    -}      
+      //- img.article-card-img-top(src='assets/images/articleimage.jpeg' alt='Images')
+    -var showStory=true
+    -if(showStory){
+        -if(data['is_open'] == "false"){
+            div.restricted_message
+                //- include ../partials/_subscribeNowMessage
+        -} else {
+            .article-card-body
+              p.article-card-text
+                b !{data.story}
+            -if(data.englishTitle && env.partnerData.show_article_english_title_end){
+              div.english-title.details-page-extra-title
+                span.title #{env.partnerData.show_article_english_title_end}
+                span.html #{data.englishTitle}
+            -}
+        -}
+        
+        div(class="page-pager pagi_wrap #{env.partnerData.goto_next_page_message}")
+          -if(data.pageNo && data.pageNo < data.pageCount && env.partnerData.goto_next_page_message){
+            div.goto-next-page-post #{env.partnerData.goto_next_page_message}
+          -}
+          -if(data.pageCount>1){
+            -if(data.pageNo>1){
+                a(href="#{data.baseUrl}#{data.pageSufix}#{data.pageNo-1}#{data.queryparams ? '?'+data.queryparams : ''}",class="prev track-click",data-category="details-pagination",data-label="prev-page")
+                  span(class="icon-text") 
+                    i.fa.fa-cheron-left &nbsp;
+                    | Prev Page
+            -}
+            ul
+              -for(var i=0;i<data.pageCount;i++){
+                li(class="#{data.pageNo==i+1 ? 'active' :''}")
+                  a.artpage(href="#{data.baseUrl}#{data.pageSufix}#{i+1}#{data.queryparams ? '?'+data.queryparams : ''}", title='Slide #{i+1}' class="track-click",data-category="details-pagination",data-label="#{i+1}-page")
+                    span #{i+1}
+              -}
+            -if(data.pageNo<data.pageCount){
+              a(href="#{data.baseUrl}#{data.pageSufix}#{data.pageNo+1}#{data.queryparams ? '?'+data.queryparams : ''}",class="next track-click",data-category="details-pagination",data-label="next-page")
+                  span(class="icon-text") 
+                    | Next Page &nbsp;
+                    i.fa.fa-chevron-right
+            
+            br
+            -}
+          -}  
+        +includeElement(data,"news_buzz_updates")
+        +includeElement(data,"left_level_before_tags","left_level_before_tags left_level_ad")
+    -}  
+    .h-ad
+      +includeElement(data,"left_level_after_paragraph")
+  -var tags = data.hashtags ? data.hashtags.split(",") : [];
+  -if(tags && tags.length >0) {
+    .card_taglist.d-flex
+      ul.active
+        -for(var i=0;i<tags.length;i++){
+            li 
+              a.active(href="#{env.rootUrl}/tags/#{tags[i].split(' ').join('-')}") #{tags[i]}
+        -}
+  -}
+  +includeElement(data,"related_post")
+  
